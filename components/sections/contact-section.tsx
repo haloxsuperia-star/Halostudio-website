@@ -10,26 +10,41 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [submitError, setSubmitError] = useState("")
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setSubmitError("")
 
     // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.email || !formData.message) {
+      setSubmitError("Email e messaggio sono obbligatori.")
       return
     }
 
     setIsSubmitting(true)
 
-    // Simulate form submission (replace with actual API call later)
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      })
 
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", email: "", message: "" })
+      const data = await res.json()
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setSubmitSuccess(false), 5000)
+      if (!res.ok) {
+        throw new Error(data.error || "Errore nell'invio del messaggio.")
+      }
+
+      setSubmitSuccess(true)
+      setFormData({ name: "", email: "", message: "" })
+      setTimeout(() => setSubmitSuccess(false), 5000)
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : "Errore nell'invio del messaggio. Riprova.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   // Combine both refs
@@ -155,13 +170,15 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
                 <MagneticButton
                   variant="primary"
                   size="lg"
-                  className="w-full text-sm disabled:opacity-50 sm:text-base"
-                  onClick={isSubmitting ? undefined : undefined}
+                  className={`w-full text-sm sm:text-base ${isSubmitting ? "pointer-events-none opacity-50" : ""}`}
                 >
                   {isSubmitting ? "Invio in corso..." : "Invia Messaggio"}
                 </MagneticButton>
                 {submitSuccess && (
-                  <p className="mt-2 text-center font-mono text-xs text-foreground/80 sm:mt-3 sm:text-sm">Messaggio inviato con successo!</p>
+                  <p className="mt-2 text-center font-mono text-xs text-green-600 sm:mt-3 sm:text-sm">Richiesta inviata con successo!</p>
+                )}
+                {submitError && (
+                  <p className="mt-2 text-center font-mono text-xs text-red-500 sm:mt-3 sm:text-sm">{submitError}</p>
                 )}
               </div>
             </form>
