@@ -1,6 +1,5 @@
 "use client"
 
-import { CustomCursor } from "@/components/custom-cursor"
 import { GrainOverlay } from "@/components/grain-overlay"
 import { ServicesSection } from "@/components/sections/services-section"
 import { ContactSection } from "@/components/sections/contact-section"
@@ -21,7 +20,6 @@ export default function Home() {
 
   return (
     <main className="relative w-full overflow-x-hidden overflow-y-auto bg-background">
-      <CustomCursor />
       <GrainOverlay />
 
       <div

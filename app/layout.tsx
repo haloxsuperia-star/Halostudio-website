@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { CustomCursor } from "@/components/custom-cursor"
 import { CookieBanner } from "@/components/cookie-banner"
 import "./globals.css"
 
@@ -59,6 +60,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
       </head>
       <body className={`font-sans antialiased`}>
+        <CustomCursor />
         {children}
         <CookieBanner />
         <Analytics />
