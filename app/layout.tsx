@@ -35,8 +35,8 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   icons: {
-    icon: "/logo-bianco.webp",
-    apple: "/logo-bianco.webp",
+    icon: "/favicon.webp",
+    apple: "/favicon.webp",
   },
   viewport: {
     width: "device-width",
