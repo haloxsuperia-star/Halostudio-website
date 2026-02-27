@@ -1,6 +1,7 @@
 "use client"
 
 import { Mail, MapPin } from "lucide-react"
+import Link from "next/link"
 import { useReveal } from "@/hooks/use-reveal"
 import { useState, type FormEvent, forwardRef } from "react"
 import { MagneticButton } from "@/components/magnetic-button"
@@ -8,11 +9,19 @@ import { MagneticButton } from "@/components/magnetic-button"
 export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection(props, ref) {
   const { ref: revealRef, isVisible } = useReveal(0.3)
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [privacyAccepted, setPrivacyAccepted] = useState(false)
+  const [privacyError, setPrivacyError] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitSuccess, setSubmitSuccess] = useState(false)
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // Check privacy acceptance
+    if (!privacyAccepted) {
+      setPrivacyError(true)
+      return
+    }
 
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
@@ -27,6 +36,8 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
     setIsSubmitting(false)
     setSubmitSuccess(true)
     setFormData({ name: "", email: "", message: "" })
+    setPrivacyAccepted(false)
+    setPrivacyError(false)
 
     // Reset success message after 5 seconds
     setTimeout(() => setSubmitSuccess(false), 5000)
@@ -152,6 +163,33 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
                 }`}
                 style={{ transitionDelay: "650ms" }}
               >
+                <div className="mb-3 flex items-start gap-2 sm:mb-4">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    checked={privacyAccepted}
+                    onChange={(e) => {
+                      setPrivacyAccepted(e.target.checked)
+                      setPrivacyError(false)
+                    }}
+                    className="mt-1 h-4 w-4 cursor-pointer"
+                  />
+                  <label htmlFor="privacy" className="cursor-pointer text-xs text-foreground/80 sm:text-sm leading-relaxed">
+                    Ho letto e accetto la{" "}
+                    <Link
+                      href="/privacy-policy"
+                      className="text-primary hover:underline"
+                      target="_blank"
+                    >
+                      Privacy Policy
+                    </Link>
+                  </label>
+                </div>
+                {privacyError && (
+                  <p className="mb-3 text-xs text-red-600 sm:mb-4">
+                    Devi accettare la Privacy Policy per continuare
+                  </p>
+                )}
                 <MagneticButton
                   variant="primary"
                   size="lg"
@@ -171,7 +209,7 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
 
       {/* Footer with company info */}
       <div className="bg-black text-white border-t border-black pt-6 pb-4 sm:pt-8 sm:pb-6 md:pt-10 md:pb-8 mt-8 sm:mt-12 md:mt-16 -mx-4 sm:-mx-6 md:-mx-12 px-4 sm:px-6 md:px-12">
-        <div className="grid grid-cols-2 gap-4 sm:gap-8">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 md:gap-16">
           <div>
             <p className="mb-1 font-mono text-[10px] text-white/60 sm:text-xs">Partita IVA</p>
             <p className="text-xs text-white/90 sm:text-sm">03343790592</p>
@@ -179,6 +217,18 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
           <div className="text-right">
             <p className="mb-1 font-mono text-[10px] text-white/60 sm:text-xs">Ragione Sociale</p>
             <p className="text-xs text-white/90 sm:text-sm">HALO STUDIO</p>
+          </div>
+        </div>
+
+        <div className="mt-6 border-t border-white/10 pt-6 sm:mt-8 sm:pt-8">
+          <div className="flex flex-wrap gap-4 text-xs text-white/70 sm:text-sm">
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-white/30">•</span>
+            <Link href="/cookie-policy" className="hover:text-white transition-colors">
+              Cookie Policy
+            </Link>
           </div>
         </div>
       </div>
