@@ -77,7 +77,7 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
   return (
     <section
       ref={setRefs}
-      className="flex min-h-screen w-full flex-col px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-24 lg:px-16 overflow-x-hidden"
+      className="flex w-full flex-col px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-24 lg:px-16 overflow-x-hidden"
     >
       <div className="mx-auto w-full max-w-7xl flex-1 flex flex-col justify-center py-4 sm:py-0">
         <div className="grid gap-6 sm:gap-8 md:grid-cols-[1.2fr_1fr] md:gap-16 lg:gap-24">
@@ -223,7 +223,7 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
       </div>
 
       {/* Footer with company info */}
-      <div className="bg-black text-white border-t border-black pt-6 pb-4 sm:pt-8 sm:pb-6 md:pt-10 md:pb-8 mt-8 sm:mt-12 md:mt-16 -mx-4 sm:-mx-6 md:-mx-12 px-4 sm:px-6 md:px-12">
+      <div className="bg-black text-white border-t border-black pt-6 pb-4 sm:pt-8 sm:pb-6 md:pt-10 md:pb-8 mt-16 sm:mt-20 md:mt-24 -mx-4 sm:-mx-6 md:-mx-12 px-4 sm:px-6 md:px-12">
         <div className="grid grid-cols-2 gap-4 sm:gap-8 md:gap-16">
           <div>
             <p className="mb-1 font-mono text-[10px] text-white/60 sm:text-xs">Partita IVA</p>
