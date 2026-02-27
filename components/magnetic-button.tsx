@@ -24,7 +24,7 @@ export function MagneticButton({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Only apply magnetic effect on desktop (md breakpoint and above)
-    if (typeof window !== 'undefined' && window.innerWidth < 768) return
+    if (window.innerWidth < 768) return
     
     if (!ref.current) return
 
