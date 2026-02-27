@@ -223,7 +223,7 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
       </div>
 
       {/* Footer with company info */}
-      <div className="bg-black text-white border-t border-black pt-6 pb-4 sm:pt-8 sm:pb-6 md:pt-10 md:pb-8 mt-16 sm:mt-20 md:mt-24 -mx-4 sm:-mx-6 md:-mx-12 px-4 sm:px-6 md:px-12">
+      <div className="bg-black text-white border-t border-black pt-6 pb-3 sm:pt-8 sm:pb-3 md:pt-10 md:pb-3 mt-16 sm:mt-20 md:mt-24 -mx-4 sm:-mx-6 md:-mx-12 px-4 sm:px-6 md:px-12">
         <div className="grid grid-cols-2 gap-4 sm:gap-8 md:gap-16">
           <div>
             <p className="mb-1 font-mono text-[10px] text-white/60 sm:text-xs">Partita IVA</p>
