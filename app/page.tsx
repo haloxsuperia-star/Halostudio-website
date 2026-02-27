@@ -1,6 +1,5 @@
 "use client"
 
-import { CustomCursor } from "@/components/custom-cursor"
 import { GrainOverlay } from "@/components/grain-overlay"
 import { ServicesSection } from "@/components/sections/services-section"
 import { ContactSection } from "@/components/sections/contact-section"
@@ -21,7 +20,6 @@ export default function Home() {
 
   return (
     <main className="relative w-full overflow-x-hidden overflow-y-auto bg-background">
-      <CustomCursor />
       <GrainOverlay />
 
       <div
@@ -92,7 +90,7 @@ export default function Home() {
             </h1>
             <p className="mb-6 max-w-xl animate-in fade-in slide-in-from-bottom-4 text-base leading-relaxed text-foreground/90 duration-1000 delay-200 sm:mb-8 sm:text-lg md:text-xl">
               <span className="text-pretty">
-                Sviluppiamo siti web, e-commerce, web app, gestionali e applicazioni mobile su misura per far crescere il tuo business.
+                Sviluppiamo siti web, e-commerce, web app, gestionali e soluzioni di intelligenza artificiale su misura per far crescere il tuo business.
               </span>
             </p>
             <div className="flex animate-in fade-in slide-in-from-bottom-4 flex-col gap-3 duration-1000 delay-300 sm:flex-row sm:items-center sm:gap-4">
