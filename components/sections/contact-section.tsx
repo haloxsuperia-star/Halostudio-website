@@ -77,7 +77,7 @@ export const ContactSection = forwardRef<HTMLDivElement>(function ContactSection
   return (
     <section
       ref={setRefs}
-      className="flex w-full flex-col px-4 py-16 sm:px-6 sm:py-20 md:px-12 md:py-24 lg:px-16 overflow-x-hidden"
+      className="flex w-full flex-col px-4 pt-16 pb-0 sm:px-6 sm:pt-20 sm:pb-0 md:px-12 md:pt-24 md:pb-0 lg:px-16 overflow-x-hidden"
     >
       <div className="mx-auto w-full max-w-7xl flex-1 flex flex-col justify-center py-4 sm:py-0">
         <div className="grid gap-6 sm:gap-8 md:grid-cols-[1.2fr_1fr] md:gap-16 lg:gap-24">
