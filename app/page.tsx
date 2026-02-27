@@ -40,15 +40,12 @@ export default function Home() {
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
       >
-        <button
-          className="flex items-center gap-2 md:transition-transform md:hover:scale-105"
-        >
+        <button className="flex items-center gap-2">
           <img 
-            src="/logo-bianco.webp" 
+            src="/logo.png" 
             alt="Halo Studio Logo" 
-            className="h-8 w-8 transition-all duration-300 md:hover:scale-110 sm:h-10 sm:w-10"
+            className="h-5 sm:h-6"
           />
-          <span className="font-sans text-base font-semibold tracking-tight text-foreground sm:text-xl">Halo Studio</span>
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
